@@ -60,7 +60,7 @@ int sommaXInteri(int x)
         printf("inserisci un numero: ");
         scanf("%d", &n);
 
-        s+=n;
+        s=somma(s,n);
     }
     return s;
 }
