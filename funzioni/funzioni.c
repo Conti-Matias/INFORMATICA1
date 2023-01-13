@@ -1,7 +1,7 @@
 /** ****************************************************************************************
 * \mainpage a_divisoreNumero.c
 *
-* @brief Scrivere un programma che, richiesto un numero intero, visualizzi tutti i suoi divisori.
+* @brief programma che utilizza funzioni
 * 
 * @author Tommaso Sollo
 * @date 30/11/2022
