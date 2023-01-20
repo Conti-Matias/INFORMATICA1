@@ -9,15 +9,40 @@
 
 #include <stdio.h>
 #include <limits.h>
+#include <stdlib.h>
 
-//funzione che trova il MCD tra due numeri
+
+
+/**
+ * @brief Calcola il massimo comune divisore tra due numeri 
+ *        utilizzando l'algoritmo di Euclide.
+ * @param a primo numero
+ * @param b secondo numero
+ * @return il massimo comune divisore tra a e b
+ */
 int MCD(int, int);
 
-//funzione che restituisce la somma dei divisori del parametro
+/**
+ * @brief Calcola la somma di tutti i divisori del parametro
+ *        
+ * @param a numero
+ * @return la somma dei divisori del numero
+ */
 int sommaDivisori(int);
 
-//funzione che presi in input base e altezza restituisce l'area
+/**
+ * @brief Calcola l'area di un rettangolo che ha per base e 
+ *        per altezza i parametri 
+ * @param a base
+ * @param b altezza
+ * @return l'area del rettangolo
+ */
 int areaRettangolo(int, int);
+
+/**
+ * @brief Funzione menu
+ */
+ int menu(void);
 
 
 
@@ -29,39 +54,80 @@ int main()
 
     int r;              //variabile che conterrà i risultati delle funzioni
     int n1, n2;         //varibili di input
+    char c;
+
+
+    while(1)
+    {
+        
+
+        r = menu();
+        
+
+        switch(r)
+        {
+            case 1:
+                printf("Inserisci due numeri: \n");
+                scanf("%d%d", &n1, &n2);
+                r=MCD(n1, n2);
+                printf("\nMCD = %d\n\n", r);
+                goto D;
+
+            case 2:
+                printf("Inserisci un numero: \n");
+                scanf("%d", &n1);
+                r=sommaDivisori(n1);
+                printf("\nSomma dei divisori di %d = %d\n", n1, r);
+                goto D;
+
+            case 3:
+                printf("Inserisci due numeri: \n");
+                scanf("%d%d", &n1, &n2);
+                r=areaRettangolo(n1, n2);
+                printf("\narea di un rettangolo con base %d e altezza %d = %d\n\n", n1, n2, r);
+                goto D;
+            
+            case 0: 
+                printf("\nCiao");
+                goto endLoop;
+            
+            default:
+                printf("\n\nHai sbagliato a digitare");
+                
+
+
+        }
+
+        endLoop:
+            break;
+
+        D:
+            scanf("%c", &c);
+    }
     
-
-    //chiedo due numeri in input
-    printf("Inserisci due numeri: \n");
-    scanf("%d%d", &n1, &n2);
-
-
-    printf("\n---------------\n\n");
-
-    //chiamata funzione MCD
-    r=MCD(n1, n2);
-    printf("\nMCD = %d\n\n", r);
-
-
-    printf("\n---------------\n\n");
-
-    //chiamata funzione sommaDivisori per la prima variabile
-    r=sommaDivisori(n1);
-    printf("\nSomma dei divisori di %d = %d\n", n1, r);
-    //chiamata funzione sommaDivisori per la seconda variabile
-    r=sommaDivisori(n2);
-    printf("\nSomma dei divisori di %d = %d\n\n", n2, r);
-
-
-    printf("\n---------------\n\n");
-
-    //chiamata funzione areaRettangolo
-    r=areaRettangolo(n1, n2);
-    printf("\narea di un rettangolo con base %d e altezza %d = %d\n\n", n1, n2, r);
-
-
 }
 
+
+int menu()
+{
+    int r;
+    char c;
+
+    scanf("%c", &c);
+    system("clear");
+
+    printf("\n-----------------------------------------------------------------");
+    printf("\nInserisci il valore corrispondente alle funzione da utilizzare\n");
+    printf("\n1 - MCD");
+    printf("\n2 - Somma Divisori");
+    printf("\n3 - Area Rettangolo");
+    printf("\n0 - Esci");
+    printf("\n\n>>> ");
+
+    scanf("%d", &r);
+
+    return r;
+}
 
 int MCD(int x, int y)
 {
