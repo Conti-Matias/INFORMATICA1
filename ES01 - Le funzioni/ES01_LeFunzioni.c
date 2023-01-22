@@ -189,7 +189,8 @@ int sommaDivisori(int x)
     //itero tutti i numeri tra 1 e il numero
     for(int i = 1; i<=x; i++)
     {
-        if(x%i==0) r += i;    //se l'indice del ciclo è un divisore lo sommo  
+        if(x%i==0) 
+            r += i;    //se l'indice del ciclo è un divisore lo sommo  
     }
 
     //restituisco il risultato
