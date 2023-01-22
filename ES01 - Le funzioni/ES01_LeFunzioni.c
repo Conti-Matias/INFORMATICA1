@@ -49,61 +49,89 @@ int areaRettangolo(int, int);
 int main()
 {
 
-    printf("\n--Esercizio Sollo Tommaso--\n\n");
 
 
     int r;              //variabile che conterrà i risultati delle funzioni
     int n1, n2;         //varibili di input
-    char c;
 
 
+    //ciclo infinito
     while(1)
     {
         
 
-        r = menu();
+        r = menu();     //chiamata funzione menu
         
 
-        switch(r)
-        {
-            case 1:
-                printf("Inserisci due numeri: \n");
-                scanf("%d%d", &n1, &n2);
-                r=MCD(n1, n2);
-                printf("\nMCD = %d\n\n", r);
-                goto D;
+        //switch che chiama la funzione giusta in base alla scelta dell'utente
+        switch(r)   
+        {   
+            //caso 1: l'utente ha scelto la funzione MCD
+            case 1:     
 
-            case 2:
-                printf("Inserisci un numero: \n");
+                printf("--Funzione MCD--\n\n");
+
+                printf("Inserisci due numeri: \n");         //chiedo i due numeri
+                scanf("%d%d", &n1, &n2);
+
+                r=MCD(n1, n2);      //chiamo la funzione
+
+                printf("\nMCD = %d\n\n", r);        //stampa risultato
+
+                goto D;     //salto alla etichetta D
+
+            //caso 2: l'utente ha scelto la funzione Somma Divisori
+            case 2:     
+
+                printf("--Funzione Somma Divisori--\n\n");
+
+                printf("Inserisci un numero: \n");      //chiedo il numero
                 scanf("%d", &n1);
-                r=sommaDivisori(n1);
-                printf("\nSomma dei divisori di %d = %d\n", n1, r);
-                goto D;
 
-            case 3:
-                printf("Inserisci due numeri: \n");
+                r=sommaDivisori(n1);    //chiamo la funzione
+
+                printf("\nSomma dei divisori di %d = %d\n", n1, r);     //stampa risultato
+
+                goto D;      //salto alla etichetta D
+
+            //caso 3: l'utente ha scelto la funzione Area Rettangolo
+            case 3:     
+
+                printf("--Funzione Area Rettangolo--\n\n");
+
+                printf("Inserisci due numeri: \n");         //chiedo i due numeri
                 scanf("%d%d", &n1, &n2);
-                r=areaRettangolo(n1, n2);
-                printf("\narea di un rettangolo con base %d e altezza %d = %d\n\n", n1, n2, r);
-                goto D;
+
+                r=areaRettangolo(n1, n2);       //chiamo la funzione
+
+                printf("\narea di un rettangolo con base %d e altezza %d = %d\n\n", n1, n2, r);     //stampa risultato
+
+                goto D;     //salto alla etichetta D
             
-            case 0: 
-                printf("\nCiao");
-                goto endLoop;
+            //caso 0: l'utente ha scelto di uscire dal programma
+            case 0:     
+                printf("\nCiao\n\n");   
+
+                goto endLoop;   //salto alla etichetta endLoop
             
-            default:
+            default:    //default: L'utente ha sbagliato a digitare
                 printf("\n\nHai sbagliato a digitare");
+                goto D;     //salto alla etichetta D
                 
-
-
         }
 
-        endLoop:
+        //etichetta di fine ciclo (uscita dal ciclo e chiusura programma)
+        endLoop:    
             break;
 
-        D:
-            scanf("%c", &c);
-    }
+        /*etichetta che attende che l'utente prema invio prima di 
+        pulire lo schermo e far rincominciare il programma*/
+        D:  
+            printf("\n\nPremi invio per continuare...");    
+            getchar();
+            getchar();
+            system("clear");
+    }      
     
 }
 
@@ -111,10 +139,8 @@ int main()
 int menu()
 {
     int r;
-    char c;
 
-    scanf("%c", &c);
-    system("clear");
+    printf("\n--Esercizio Sollo Tommaso--\n\n");
 
     printf("\n-----------------------------------------------------------------");
     printf("\nInserisci il valore corrispondente alle funzione da utilizzare\n");
@@ -125,6 +151,8 @@ int menu()
     printf("\n\n>>> ");
 
     scanf("%d", &r);
+
+    printf("\n\n");
 
     return r;
 }
@@ -159,7 +187,7 @@ int sommaDivisori(int x)
     int r = 0;  //conterrà la somma di tutti i divisori
 
     //itero tutti i numeri tra 1 e il numero
-    for(int i = 1; i<x; i++)
+    for(int i = 1; i<=x; i++)
     {
         if(x%i==0) r += i;    //se l'indice del ciclo è un divisore lo sommo  
     }
