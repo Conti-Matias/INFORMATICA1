@@ -1,206 +1,114 @@
-/** ****************************************************************************************
-* \mainpage a_divisoreNumero.c
-*
-* @brief programma che utilizza funzioni
-* 
-* @author Tommaso Sollo
-* @date 30/11/2022
-*/
+/*******************************************************************************************
+* \mainpage 										   *									   *
+*1) Scrivere una funzione chiamata "mcd" che prende in input due numeri interi e           *
+*  restituisce il loro massimo comune divisore utilizzando l'algoritmo di Euclide.         *
+2)Scrivere una funzione chiamata "somma_divisori" che prende in input un numero            *
+*  intero e restituisce la somma dei suoi divisori.                                        *
+3)Scrivere una funzione chiamata "area_rettangolo" che prende in input la base             *
+*  e l'altezza di un rettangolo e restituisce l'area. 					   *				   *
+* @author Conti Gallenti Matias                                                            *
+* @date 11/01/2023                                                                         *                                                                                        
+********************************************************************************************/
+#include <stdio.h>   
+#include <stdlib.h>   
 
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-
-
-
-/**
- * @brief Calcola il massimo comune divisore tra due numeri 
- *        utilizzando l'algoritmo di Euclide.
- * @param a primo numero
- * @param b secondo numero
- * @return il massimo comune divisore tra a e b
- */
 int MCD(int, int);
-
-/**
- * @brief Calcola la somma di tutti i divisori del parametro
- *        
- * @param a numero
- * @return la somma dei divisori del numero
- */
-int sommaDivisori(int);
-
-/**
- * @brief Calcola l'area di un rettangolo che ha per base e 
- *        per altezza i parametri 
- * @param a base
- * @param b altezza
- * @return l'area del rettangolo
- */
-int areaRettangolo(int, int);
-
-/**
- * @brief Funzione menu
- */
- int menu(void);
-
-
+int somma_divisore(int);
+int area_rettangolo(int, int);
+int menu(void);
 
 int main()
 {
-
-
-
-    int r;              //variabile che conterrà i risultati delle funzioni
-    int n1, n2;         //varibili di input
-
-
-    //ciclo infinito
-    while(1)
-    {
-        
-
-        r = menu();     //chiamata funzione menu
-        
-
-        //switch che chiama la funzione giusta in base alla scelta dell'utente
-        switch(r)   
-        {   
-            //caso 1: l'utente ha scelto la funzione MCD
-            case 1:     
-
-                printf("--Funzione MCD--\n\n");
-
-                printf("Inserisci due numeri: \n");         //chiedo i due numeri
-                scanf("%d%d", &n1, &n2);
-
-                r=MCD(n1, n2);      //chiamo la funzione
-
-                printf("\nMCD = %d\n\n", r);        //stampa risultato
-
-                goto D;     //salto alla etichetta D
-
-            //caso 2: l'utente ha scelto la funzione Somma Divisori
-            case 2:     
-
-                printf("--Funzione Somma Divisori--\n\n");
-
-                printf("Inserisci un numero: \n");      //chiedo il numero
-                scanf("%d", &n1);
-
-                r=sommaDivisori(n1);    //chiamo la funzione
-
-                printf("\nSomma dei divisori di %d = %d\n", n1, r);     //stampa risultato
-
-                goto D;      //salto alla etichetta D
-
-            //caso 3: l'utente ha scelto la funzione Area Rettangolo
-            case 3:     
-
-                printf("--Funzione Area Rettangolo--\n\n");
-
-                printf("Inserisci due numeri: \n");         //chiedo i due numeri
-                scanf("%d%d", &n1, &n2);
-
-                r=areaRettangolo(n1, n2);       //chiamo la funzione
-
-                printf("\narea di un rettangolo con base %d e altezza %d = %d\n\n", n1, n2, r);     //stampa risultato
-
-                goto D;     //salto alla etichetta D
-            
-            //caso 0: l'utente ha scelto di uscire dal programma
-            case 0:     
-                printf("\nCiao\n\n");   
-
-                goto endLoop;   //salto alla etichetta endLoop
-            
-            default:    //default: L'utente ha sbagliato a digitare
-                printf("\n\nHai sbagliato a digitare");
-                goto D;     //salto alla etichetta D
-                
-        }
-
-        //etichetta di fine ciclo (uscita dal ciclo e chiusura programma)
-        endLoop:    
-            break;
-
-        /*etichetta che attende che l'utente prema invio prima di 
-        pulire lo schermo e far rincominciare il programma*/
-        D:  
-            printf("\n\nPremi invio per continuare...");    
-            getchar();
-            getchar();
-            system("clear");
-    }      
-    
+	//variabile del menu
+	int men;
+	//variabili per l'MCD
+	int f=0;
+	int N,n;
+	//variabili per la somma dei divisori
+	int r=0;
+	int n1;
+	//variabili per l'area del rettangolo
+	int ris=0;
+	int base, altezza;
+	do
+		{
+		//menu
+		men=menu();
+		switch(men)
+		{
+			case 0:printf("arrivederci");
+				break;
+			//MCD
+			case 1:printf("inserire il primo numero\n");
+			       scanf("%d",&N);
+			       printf("inserire il secondo numero\n");
+			       scanf("%d",&n);
+			       f=MCD(N,n);
+			       printf("l'MCD e' %d\n",f);
+				break;
+			//somma_divisore
+			case 2:printf("Inserisci il primo numero:\n");
+		           scanf("%d",&n1);
+    	       	   r=somma_divisore(n1);
+	               printf("la somma dei divisori e' %d\n",r);
+	       		break;
+	        //area_rettangolo
+	        case 3:printf("Inserisci la base:\n");
+	               scanf("%d",&base);
+	               printf("Inserisci l'altezza:\n");
+	               scanf("%d",&altezza);
+	               ris=area_rettangolo(base, altezza);
+	               printf("%d",ris);
+	    		break;
+	        default:printf("numero sbagliato");
+		}	
+		printf("\nPremi invio per continuare..."); //codice per pulire lo schermo   
+		system("pause");
+		system("cls");
+	}
+while(men!=0);
 }
 
-
-int menu()
+int menu(void)//funzione per il menu
 {
-    int r;
-
-    printf("\n--Esercizio Sollo Tommaso--\n\n");
-
-    printf("\n-----------------------------------------------------------------");
-    printf("\nInserisci il valore corrispondente alle funzione da utilizzare\n");
-    printf("\n1 - MCD");
-    printf("\n2 - Somma Divisori");
-    printf("\n3 - Area Rettangolo");
-    printf("\n0 - Esci");
-    printf("\n\n>>> ");
-
-    scanf("%d", &r);
-
-    printf("\n\n");
-
-    return r;
+	int risp;
+	printf("digita 1 per calcolare l'MCD\n\n");
+	printf("digita 2 per calcolare la somma dei divisori\n\n");
+	printf("digita 3 per calcolare l'area del rettangolo\n\n");
+	printf("digita 0 per terminare\n\n");
+	scanf("%d",&risp);
+	return risp;	
 }
 
-int MCD(int x, int y)
+int MCD(int x, int y)//funzione per l'MCD
 {
-    float r;    //conterrà il resto
-    int c;      //variabile utilizata per scambiare i valori di x e y
-
-    //se y è magiore di x scambio i valori delle variabili
-    if(y>x){
-        c=x;
-        x=y;
-        y=c;
-    }
-
-    //algoritmo di Euclide per trovare l'MCD
-    while(y!=0)
-    {
-        r = x%y;
-        x=y;
-        y=r;
-    }
-
-    //restituisco il risultato
-    return x;
-    
+	int ris=0;
+	while(y!=0)
+	{
+		ris=x%y;
+		x=y;
+		y=ris;
+	}
+	return x;
 }
 
-int sommaDivisori(int x)
+int somma_divisore(int x)//funzione per la somma dei divisori
 {
-    int r = 0;  //conterrà la somma di tutti i divisori
-
-    //itero tutti i numeri tra 1 e il numero
-    for(int i = 1; i<=x; i++)
-    {
-        if(x%i==0) 
-            r += i;    //se l'indice del ciclo è un divisore lo sommo  
-    }
-
-    //restituisco il risultato
-    return r;
+	int ris=0;
+	int i=0;
+	for(i=1;i<=x;i++)
+	{
+		if(x%i==0)
+		{
+			ris=ris+i;	
+		}	
+	}
+	return ris;
 }
 
-int areaRettangolo(int x, int y)
+int area_rettangolo(int x, int y)//funzione per trovare L'area del rettangolo
 {
-    int area = x * y;   //calcolo l'area
-
-    //restituisco il risultato
-    return area;
+	int r=0;
+	r=x*y;
+	return r;
 }
